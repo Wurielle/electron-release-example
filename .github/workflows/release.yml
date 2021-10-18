@@ -1,4 +1,3 @@
-# what if we delete all tags
 name: Tag release
 on:
   push:
