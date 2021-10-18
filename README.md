@@ -1,5 +1,7 @@
 # electron-release-example
 
+We added a feat!
+
 ## Project setup
 ```
 yarn install
