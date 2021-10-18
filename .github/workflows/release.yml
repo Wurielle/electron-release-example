@@ -1,4 +1,4 @@
-# trying to trigger a 1.1.0
+# what if we delete all tags
 name: Release
 on:
   push:
