@@ -1,4 +1,4 @@
-# trying to trigger a 1.0.1 without error 500?
+# trying to trigger a 1.1.0
 name: Release
 on:
   push:
