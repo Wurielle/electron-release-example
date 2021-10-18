@@ -1,0 +1,28 @@
+name: Tag release
+on:
+  push:
+    branches:
+      - main
+jobs:
+  tag-release:
+    name: Tag release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          # Need to create a Personal Access Token
+          # to allow this workflow to trigger others
+          # See: https://stackoverflow.com/a/60418414
+          token: ${{ secrets.PAT }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 'lts/*'
+
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release
