@@ -1,5 +1,5 @@
 {
-  "name": "actions",
+  "name": "electron-release-example",
   "version": "0.0.0-development",
   "description": "",
   "main": "index.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Wurielle/actions.git"
+    "url": "https://github.com/Wurielle/electron-release-example.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Wurielle/actions/issues"
+    "url": "https://github.com/Wurielle/electron-release-example/issues"
   },
-  "homepage": "https://github.com/Wurielle/actions#readme",
+  "homepage": "https://github.com/Wurielle/electron-release-example#readme",
   "publishConfig": {
     "access": "restricted"
   },

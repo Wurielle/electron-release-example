@@ -1,12 +1,12 @@
 # what if we delete all tags
-name: Release
+name: Tag release
 on:
   push:
     branches:
       - main
 jobs:
-  release:
-    name: Release
+  tag-release:
+    name: Tag release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
