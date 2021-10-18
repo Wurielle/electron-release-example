@@ -53,7 +53,7 @@ jobs:
       - name: Build electron
         run: |
           npm i
-          npm run electron:build
+          npm run electron:build -- -p always
 
       - name: Cleanup electron dist
         working-directory: dist_electron
