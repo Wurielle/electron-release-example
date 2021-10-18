@@ -68,11 +68,11 @@ jobs:
         with:
           asset_paths: '["./dist_electron/*"]'
 
-      - name: Upload artifacts to Google Cloud Storage
-        if: secrets.GCP_SA_KEY && secrets.GCS_BUCKET
-        uses: google-github-actions/upload-cloud-storage@main
-        with:
-          credentials: ${{ secrets.GCP_SA_KEY }}
-          path: dist_electron
-          parent: false
-          destination: ${{GCS_BUCKET}}
+#      - name: Upload artifacts to Google Cloud Storage
+#        if: secrets.GCP_SA_KEY && secrets.GCS_BUCKET
+#        uses: google-github-actions/upload-cloud-storage@main
+#        with:
+#          credentials: ${{ secrets.GCP_SA_KEY }}
+#          path: dist_electron
+#          parent: false
+#          destination: ${{GCS_BUCKET}}
