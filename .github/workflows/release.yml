@@ -11,6 +11,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
+          # Trying to trigger both actions with the same checkout and be able to be released by a user instead of a bot
           token: ${{ secrets.PAT }}
 
       - name: Create changelog for Release
