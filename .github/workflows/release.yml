@@ -53,6 +53,16 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
+      - name: Set vars
+        id: vars
+        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+        
+      - uses: wurielle/package-version-action@v1
+        with:
+          version: ${{ steps.vars.outputs.tag }}
+          targets: |
+            ./package.json 
+            
       - name: Build electron
         run: |
           npm i
