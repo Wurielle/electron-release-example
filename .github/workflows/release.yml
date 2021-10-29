@@ -56,7 +56,7 @@ jobs:
 
       - name: Set env variables
         run: |
-          ${{ fromJSON('["echo \"RELEASE_VERSION=${GITHUB_REF#refs/*/}\" >> $GITHUB_ENV", "echo (\"RELEASE_VERSION=\" + $env:GITHUB_REF.replace(\"refs/*/\", "")) >> $env:GITHUB_ENV"]')[matrix.os == 'windows-latest'] }}
+          ${{ fromJSON('["echo \"RELEASE_VERSION=${GITHUB_REF#refs/*/}\" >> $GITHUB_ENV", "echo (\"RELEASE_VERSION=\" + $env:GITHUB_REF.replace(\"refs/*/\", \"\")) >> $env:GITHUB_ENV"]')[matrix.os == 'windows-latest'] }}
         
       - name: Set package.json version
         uses: wurielle/package-version-action@v1
