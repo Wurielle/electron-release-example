@@ -56,7 +56,10 @@ jobs:
 
       - name: Set env variables
         run: |
-          ${{ fromJSON('["echo \"RELEASE_VERSION=${GITHUB_REF#refs/*/}\" >> $GITHUB_ENV", "echo (\"RELEASE_VERSION=\" + $env:GITHUB_REF.replace(\"refs/tags/\", \"\")) >> $env:GITHUB_ENV"]')[matrix.os == 'windows-latest'] }}
+          ${{ fromJSON('[
+            "echo \"RELEASE_VERSION=${GITHUB_REF#refs/*/}\" >> $GITHUB_ENV", 
+            "echo (\"RELEASE_VERSION=\" + $env:GITHUB_REF.split(\"/\")[-1]) >> $env:GITHUB_ENV"
+          ]')[matrix.os == 'windows-latest'] }}
         
       - name: Set package.json version
         uses: wurielle/package-version-action@v1
@@ -73,7 +76,10 @@ jobs:
       - name: Cleanup electron dist
         working-directory: dist_electron
         run: |
-          ${{ fromJSON('["rm -rf linux-unpacked mac builder-debug.yml bundled", "rm -r -fo win-unpacked, builder-debug.yml, bundled"]')[matrix.os == 'windows-latest'] }}
+          ${{ fromJSON('[
+            "rm -rf linux-unpacked mac builder-debug.yml bundled", 
+            "rm -r -fo win-unpacked, builder-debug.yml, bundled"
+          ]')[matrix.os == 'windows-latest'] }}
           ls -l ./
 
       - name: Upload artifacts to Release
