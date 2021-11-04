@@ -1,6 +1,6 @@
 # electron-release-example
 
-We added a feat!
+Added a brand new feature!
 
 ## Project setup
 ```
