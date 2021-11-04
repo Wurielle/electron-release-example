@@ -36,7 +36,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        
+
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
@@ -55,31 +55,27 @@ jobs:
             ${{ runner.os }}-
 
       - name: Set env variables
+        shell: bash
         run: |
-          ${{ fromJSON('[
-            "echo \"RELEASE_VERSION=${GITHUB_REF#refs/*/}\" >> $GITHUB_ENV", 
-            "echo (\"RELEASE_VERSION=\" + $env:GITHUB_REF.split(\"/\")[-1]) >> $env:GITHUB_ENV"
-          ]')[matrix.os == 'windows-latest'] }}
-        
+          echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+
       - name: Set package.json version
         uses: wurielle/package-version-action@v1
         with:
           version: ${{ env.RELEASE_VERSION }}
           targets: |
-            ./package.json 
-            
+            ./package.json
+
       - name: Build electron
         run: |
           npm i
           npm run electron:build -- -p never
 
       - name: Cleanup electron dist
+        shell: bash
         working-directory: dist_electron
         run: |
-          ${{ fromJSON('[
-            "rm -rf linux-unpacked mac builder-debug.yml bundled", 
-            "rm -r -fo win-unpacked, builder-debug.yml, bundled"
-          ]')[matrix.os == 'windows-latest'] }}
+          rm -rf win-unpacked linux-unpacked mac builder-debug.yml bundled
           ls -l ./
 
       - name: Upload artifacts to Release
