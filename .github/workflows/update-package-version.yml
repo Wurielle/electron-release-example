@@ -14,7 +14,7 @@ jobs:
         shell: bash
         run: |
           echo "RELEASE_VERSION=$(npx semantic-release --dry-run | grep 'The next release version is' | sed -E 's/.* ([[:digit:].]+)$/\1/')" >> $GITHUB_ENV
-          npx semantic-release --dry-run | grep 'The next release version is' | sed -E 's/.* ([[:digit:].]+)$/\1/')
+          npx semantic-release --dry-run | grep 'The next release version is' | sed -E 's/.* ([[:digit:].]+)$/\1/'
 
       - name: Set package.json version
         uses: wurielle/package-version-action@v1
