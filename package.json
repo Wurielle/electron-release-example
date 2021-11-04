@@ -57,7 +57,8 @@
   "readme": "ERROR: No README data found!",
   "release": {
     "branches": [
-      "main"
+      "main",
+      "release/*"
     ],
     "plugins": [
       [
