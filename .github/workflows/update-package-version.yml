@@ -1,0 +1,29 @@
+name: Update package.json version
+
+on: [pull_request]
+
+jobs:
+  update-package:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set env variables
+        shell: bash
+        run: |
+          echo "RELEASE_VERSION=$(npx semantic-release --dry-run | grep 'The next release version is' | sed -E 's/.* ([[:digit:].]+)$/\1/')" >> $GITHUB_ENV
+
+      - name: Set package.json version
+        uses: wurielle/package-version-action@v1
+        with:
+          version: ${{ env.RELEASE_VERSION }}
+          targets: |
+            ./package.json
+
+      - name: Commit package.json change
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Updated package.json version to ${{ env.RELEASE_VERSION }}
+          file_pattern: package.json
